@@ -50,7 +50,7 @@ public class GuiReplayOverlay extends AbstractGuiOverlay<GuiReplayOverlay> {
             return tooltip;
         }
     }.setSize(20, 20).setTexture(ReplayMod.TEXTURE, TEXTURE_SIZE).setTooltip(new GuiTooltip());
-    public final GuiSlider speedSlider = new GuiSlider().setSize(100, 20).setSteps(37); // 0.0 is not included
+    public final GuiSlider speedSlider = new GuiSlider().setSize(100, 20).setSteps(73); // 0.0 is not included
     public final GuiMarkerTimeline timeline;
 
     /**
@@ -138,8 +138,10 @@ public class GuiReplayOverlay extends AbstractGuiOverlay<GuiReplayOverlay> {
         int value = speedSlider.getValue() + 1;
         if (value <= 9) {
             return value / 10d;
+        } else if (value <= 28) {
+            return 1 + (0.5d * (value - 10));
         } else {
-            return 1 + (0.25d * (value - 10));
+            return 10 + (2d * (value - 28));
         }
     }
 
